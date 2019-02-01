@@ -19,7 +19,6 @@ class Home extends Component{
 
     showNext = () => {
         let {page} = this.state;
-
         if(page === 4) page = 0;
         getUser(page+1)
         .then(item => {
@@ -37,13 +36,13 @@ class Home extends Component{
                         <div className="uk-container">
                             <div className="uk-child-width-1-3@m uk-grid-small uk-grid-match" data-uk-grid>
                                 {items.length > 0 ?
-                                    items.map(item => <InfoCard key={item._id} info={item} />) :
+                                    items.map(item => <InfoCard key={item.id} info={item} />) :
                                     <p>Sin info cargada</p>
                                 }
                             </div>
                         </div>
                     </div>
-                    <div className="uk-section-default">
+                    <div className="uk-section-default uk-child-width-1-3@m">
                         <button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onClick={this.showNext} >Siguiente</button>
                     </div> 
                 </div>
