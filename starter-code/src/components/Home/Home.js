@@ -6,12 +6,6 @@ class Home extends Component{
     constructor(){
         super();
         this.state = {
-            item:{
-                first_name: "",
-                last_name: 0,
-                avatar: "https://i.imgur.com/eTmWoAN.png",
-                page:0,
-            },
             page:1,
             items: []
         }
@@ -19,10 +13,7 @@ class Home extends Component{
     }
 
     componentWillMount() {
-        getUser(1)
-        .then(item => {
-            this.setState({items:item.data.data,page:item.data.page})
-        })
+        this.showNext();
 
     }
 
