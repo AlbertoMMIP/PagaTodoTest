@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {getUser} from "../../services";
+import {InfoCard} from "../common/InfoCard";
 
 class Home extends Component{
     constructor(){
@@ -13,22 +15,25 @@ class Home extends Component{
     }
 
     componentWillAmount(){
-
+        getUser(1)
+        .then(item => {
+            console.log('Entro' + item);
+        })
     }
 
     render(){
         return(
-            <div>
-                <div className="columns" >
-                    <div className="column"></div>
-                    <div className="column"><h1 className="title">PagaTodo</h1></div>
-                    <div className="column"></div>
-                </div>
-                <div>
-                    <input type="text" className="input" style={{margin: "30px 0px"}} name="search" placeholder="Search" value=""/>
+            <div className="uk-section-muted uk-section uk-section-small" data-uk-scrollspy="target: [uk-scrollspy-class]; cls: uk-animation-fade; delay: false;">
+                <div className="uk-position-relative">
+                    <h3>Bienvenido</h3>
+                    <div className="uk-child-width-1-1@m" data-uk-grid>                    
+                        <div>
+                            <InfoCard/>
+                        </div>
+                    </div>
                 </div>
             </div>
-        );
+            );
     }
 }
 
