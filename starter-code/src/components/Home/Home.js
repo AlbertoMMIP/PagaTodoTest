@@ -10,8 +10,9 @@ class Home extends Component{
                 first_name: "",
                 last_name: 0,
                 avatar: "https://i.imgur.com/eTmWoAN.png",
-                page:"",
+                page:0,
             },
+            page:1,
             items: []
         }
 
@@ -20,10 +21,19 @@ class Home extends Component{
     componentWillMount() {
         getUser(1)
         .then(item => {
-            console.log('Entro' + item.data.data);
-            this.setState({items:item.data.data})
+            this.setState({items:item.data.data,page:item.data.page})
         })
 
+    }
+
+    showNext = () => {
+        let {page} = this.state;
+
+        if(page === 4) page = 0;
+        getUser(page+1)
+        .then(item => {
+            this.setState({items:item.data.data,page:item.data.page})
+        })
     }
 
     render(){
@@ -42,6 +52,9 @@ class Home extends Component{
                             </div>
                         </div>
                     </div>
+                    <div className="uk-section-default">
+                        <button className="uk-button uk-button-primary uk-width-1-1 uk-margin-small-bottom" onClick={this.showNext} >Siguiente</button>
+                    </div> 
                 </div>
             </div>
             );
